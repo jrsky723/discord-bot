@@ -1,10 +1,11 @@
 import discord
 from discord import app_commands
+from discord.ext import commands
 import wavelink
 from utils.utils import load_config
 
 
-class Music(app_commands.Group):
+class Music(commands.GroupCog):
     vc: wavelink.Player = None
 
     async def join(self, interaction: discord.Interaction) -> bool:
@@ -71,9 +72,9 @@ class Music(app_commands.Group):
         await self.vc.disconnect()
         await interaction.response.send_message(f"Disconnected.", ephemeral=True, delete_after=5)
 
-async def setup(bot):
+async def setup(bot: commands.Bot):
     config = load_config()
     node: wavelink.Node = wavelink.Node(uri="http://localhost:2333",
                                         password=config["PASSWORD"])
     await wavelink.NodePool.connect(client=bot, nodes=[node])
-    bot.tree.add_command(Music(name="m", description="Music commands."))
+    await bot.add_cog(Music(name="m", description="Music commands."))

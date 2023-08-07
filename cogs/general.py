@@ -10,7 +10,7 @@ class GeneralCog(commands.Cog):
 
     @app_commands.command()
     async def ping(self, interaction: discord.Interaction) -> None:
-        await interaction.response.send_message(file=discord.File("resources/xi.jpg"))
+        await interaction.response.send_message(content="中国梦，实现伟大复兴", file=discord.File("resources/xi.jpg"))
 
     @app_commands.command()
     async def exit(self, interaction: discord.Interaction) -> None:

@@ -15,10 +15,11 @@ class Bot(commands.Bot):
         print("Bot is ready.")
         await bot.load_extension(f"cogs.general")
         await bot.load_extension(f"cogs.advanced")
+        await bot.load_extension(f"cogs.chat")
+        # await bot.load_extension(f"cogs.webui")
         # await bot.load_extension(f"cogs.music")
         bot.tree.copy_global_to(guild=bot.guilds[0])
         await bot.tree.sync(guild=bot.guilds[0])
-
 
 
 bot = Bot()
