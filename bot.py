@@ -6,7 +6,6 @@ from utils.utils import load_config
 class Bot(commands.Bot):
 
     def __init__(self) -> None:
-        intents = discord.Intents.default()
         intents = discord.Intents.all()
 
         super().__init__(intents=intents, command_prefix='!')
